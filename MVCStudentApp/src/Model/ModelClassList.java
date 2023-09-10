@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import Controller.Interfaces.iGetModel;
 import Model.Core.Student;
@@ -15,5 +16,23 @@ public class ModelClassList implements iGetModel {
 
     public List<Student> getStudents() {
         return students;
-    } 
+    }
+
+    @Override
+    public boolean delete (int id) {
+       List <Student> students1 = students.stream()
+                .filter(x->x.getId()==id)
+                .toList();
+       if (students1.isEmpty())
+           return false;
+        for (Student s:students1) {
+            students.remove(s);
+        }
+        return true;
+    }
+
+    @Override
+    public Integer key() {
+        return 3;
+    }
 }

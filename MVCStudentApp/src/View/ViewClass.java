@@ -16,6 +16,7 @@ public class ViewClass implements iGetView {
             System.out.println(s);
         }
         System.out.println("----------------------------------------");
+
     }
 
     public String prompt(String msg)
@@ -23,5 +24,9 @@ public class ViewClass implements iGetView {
         Scanner in = new Scanner(System.in);
         System.out.println(msg);
         return in.nextLine();
+    }
+    public void sendMessage (String message){
+        System.out.println();
+        System.out.println(message);
     }
 }

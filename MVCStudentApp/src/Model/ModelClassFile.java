@@ -36,7 +36,7 @@ public class ModelClassFile implements iGetModel {
             while(line!=null)
             {
                 String[] param = line.split(" ");
-                Student pers = new Student(param[0], Integer.parseInt(param[1]));
+                Student pers = new Student(param[0], Integer.parseInt(param[1]),Integer.parseInt(param[2]));
                 students.add(pers);
                 line = reader.readLine();
             }
@@ -52,7 +52,7 @@ public class ModelClassFile implements iGetModel {
 
     public void saveAllStudentToFile(List<Student> students)
     {
-        try(FileWriter fw = new FileWriter(fileName, true))
+        try(FileWriter fw = new FileWriter(fileName, false))
         {
             for(Student pers : students)
             {
@@ -64,5 +64,24 @@ public class ModelClassFile implements iGetModel {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    @Override
+    public boolean delete(int id) {
+        List<Student> students = getStudents();
+        List <Student> students1 = students.stream()
+                .filter(x->x.getId()==id)
+                .toList();
+        if (students1.isEmpty())
+            return false;
+        for (Student s:students1) {
+            students.remove(s);
+        }
+       // saveAllStudentToFile(students);
+        return true;
+    }
+
+    @Override
+    public Integer key() {
+        return 1;
+    }
 }

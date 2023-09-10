@@ -9,7 +9,10 @@ public class Student extends Person  {
         this.id = generalId;
         generalId++;
     }
-
+    public Student(String name, int age, int id){
+        super(name,age);
+        this.id = id;
+    }
 
     public int getId() {
         return id;

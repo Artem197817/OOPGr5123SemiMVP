@@ -5,29 +5,28 @@ import java.util.List;
 
 import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
-import Model.ModelClassList;
 import Model.Core.Student;
-import View.ViewClass;
 
 public class ControllerClass {
 
+    private ControllerModel controllerModel;
     private iGetModel model;
     private iGetView view;
     private List<Student> students = new ArrayList<Student>();
 
-    public ControllerClass(iGetModel model, iGetView view) {
-        this.model = model;
+    public ControllerClass(ControllerModel controllerModel, iGetView view) {
+        this.controllerModel = controllerModel;
         this.view = view;
     }
 
-    private boolean testData(List<Student> studs)
-    {
-        if(studs.size()>0)
-        {
+    public void setModel(iGetModel model) {
+        this.model = model;
+    }
+
+    private boolean testData(List<Student> studs) {
+        if (studs.size() > 0) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -37,11 +36,9 @@ public class ControllerClass {
         //MVP
         students = model.getStudents();
 
-        if(testData(students))
-        {
+        if (testData(students)) {
             view.printAllStudent(students);
-        }
-        else{
+        } else {
             System.out.println("Список студентов пуст!");
         }
 
@@ -51,25 +48,70 @@ public class ControllerClass {
     }
 
 
-    public void run()
-    {
+    public void run() {
         Command com = Command.NONE;
         boolean getNewIter = true;
-        while(getNewIter)
-        {
+        while (getNewIter) {
             String command = view.prompt("Введите команду:");
             com = Command.valueOf(command.toUpperCase());
-            switch(com)
-            {
+            switch (com) {
                 case EXIT:
-                   getNewIter = false;
-                   System.out.println("Выход из программы");
-                   break;
+                    getNewIter = false;
+                    System.out.println("Выход из программы");
+                    break;
                 case LIST:
-                   view.printAllStudent(model.getStudents());
-                   break;
+                    for (int i = 1; i <= 3; i++) {
+                        setModel(controllerModel.numberModel.get(i));
+                        view.printAllStudent(model.getStudents());
+                    }
+                    break;
+                case DELETE:
+                    String idString = view.prompt("Для удаления студента введите id: ");
+                    if (!idString.matches("\\d*"))
+                        break;
+                    int id = Integer.parseInt(idString);
+                    boolean isDelete = false;
+                    for (int i = 1; i <= 3; i++) {
+                        setModel(controllerModel.numberModel.get(i));
+                        isDelete = model.delete(id);
+                        if (isDelete) {
+                            view.sendMessage("Студент удален");
+                            break;
+                        }
+                    }
+                    if (!isDelete)
+                        System.out.println("Студент не найден");
+                    break;
             }
+
         }
     }
-
 }
+// public void delete () {
+//     String idString = view.prompt("Для удаления студента введите id: ");
+//     if (!idString.matches("\\d*"))
+//         return;
+//     int id = Integer.parseInt(idString);
+//    // ModelClassList modelClassList = new ModelClassList(students);
+//     boolean isDelete = model.delete(id);
+//     if (isDelete) {
+//         view.sendMessage("Студент удален");
+//         return;
+//     }
+//     ModelClassHash modelClassHash = new ModelClassHash(students);
+//     isDelete = modelClassHash.delete(id);
+//     if (isDelete) {
+//         view.sendMessage("Студент удален");
+//         return;
+//     }
+//     ModelClassFile modelClassFile = new ModelClassFile("StudentDB.csv");
+//     isDelete = modelClassFile.delete(id);
+//     if (isDelete) {
+//         view.sendMessage("Студент удален");
+//         return;
+//     }
+//     view.sendMessage("Студент не найден");
+// }
+
+
+
