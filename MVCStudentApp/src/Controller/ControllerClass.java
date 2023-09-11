@@ -80,38 +80,14 @@ public class ControllerClass {
                         }
                     }
                     if (!isDelete)
-                        System.out.println("Студент не найден");
+                        view.sendMessage("Студент не найден");
                     break;
             }
 
         }
     }
 }
-// public void delete () {
-//     String idString = view.prompt("Для удаления студента введите id: ");
-//     if (!idString.matches("\\d*"))
-//         return;
-//     int id = Integer.parseInt(idString);
-//    // ModelClassList modelClassList = new ModelClassList(students);
-//     boolean isDelete = model.delete(id);
-//     if (isDelete) {
-//         view.sendMessage("Студент удален");
-//         return;
-//     }
-//     ModelClassHash modelClassHash = new ModelClassHash(students);
-//     isDelete = modelClassHash.delete(id);
-//     if (isDelete) {
-//         view.sendMessage("Студент удален");
-//         return;
-//     }
-//     ModelClassFile modelClassFile = new ModelClassFile("StudentDB.csv");
-//     isDelete = modelClassFile.delete(id);
-//     if (isDelete) {
-//         view.sendMessage("Студент удален");
-//         return;
-//     }
-//     view.sendMessage("Студент не найден");
-// }
+
 
 
 

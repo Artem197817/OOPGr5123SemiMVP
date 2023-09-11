@@ -76,7 +76,7 @@ public class ModelClassFile implements iGetModel {
         for (Student s:students1) {
             students.remove(s);
         }
-       // saveAllStudentToFile(students);
+        saveAllStudentToFile(students);
         return true;
     }
 

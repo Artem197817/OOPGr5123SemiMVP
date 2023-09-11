@@ -17,7 +17,4 @@ public class ControllerModel {
 
     }
 
-   // public iGetModel getModel (){
-
-   // }
 }

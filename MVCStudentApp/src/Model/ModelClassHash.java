@@ -19,8 +19,6 @@ public class ModelClassHash implements iGetModel {
        for (Student s:students){
            studentHashMap.put((long)s.getId(),s);
        }
-     //  studentHashMap = students.stream()
-     //         .collect(Collectors.toMap(Student::getId,Function.identity()));
     }
 
     @Override
