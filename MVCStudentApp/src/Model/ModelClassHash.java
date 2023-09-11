@@ -6,14 +6,13 @@ import Model.Core.Student;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
 
 
 public class ModelClassHash implements iGetModel {
 
 
-    private HashMap<Long, Student> studentHashMap = new HashMap<>();
+    private final HashMap<Long, Student> studentHashMap = new HashMap<>();
 
     public ModelClassHash(List<Student> students) {
        for (Student s:students){
@@ -24,10 +23,6 @@ public class ModelClassHash implements iGetModel {
     @Override
     public List<Student> getStudents() {
         return new ArrayList<>(studentHashMap.values());
-    }
-    public void add (Student student){
-        Long l = (long) student.getId();
-        studentHashMap.put(l,student);
     }
 
     @Override

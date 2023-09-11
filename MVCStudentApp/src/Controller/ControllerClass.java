@@ -1,6 +1,6 @@
 package Controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import Controller.Interfaces.iGetModel;
@@ -9,10 +9,9 @@ import Model.Core.Student;
 
 public class ControllerClass {
 
-    private ControllerModel controllerModel;
+    private final ControllerModel controllerModel;
     private iGetModel model;
-    private iGetView view;
-    private List<Student> students = new ArrayList<Student>();
+    private final iGetView view;
 
     public ControllerClass(ControllerModel controllerModel, iGetView view) {
         this.controllerModel = controllerModel;
@@ -24,17 +23,13 @@ public class ControllerClass {
     }
 
     private boolean testData(List<Student> studs) {
-        if (studs.size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return studs.size() > 0;
     }
 
     public void update() {
 
         //MVP
-        students = model.getStudents();
+        List<Student> students = model.getStudents();
 
         if (testData(students)) {
             view.printAllStudent(students);

@@ -1,7 +1,7 @@
 package Model.Core;
 
 public class Student extends Person  {
-    private int id;
+    private final int id;
     private static int generalId;
 
     public Student(String name, int age) {

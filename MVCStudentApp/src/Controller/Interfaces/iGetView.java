@@ -6,6 +6,8 @@ import Model.Core.Student;
 
 public interface iGetView {
     void printAllStudent(List<Student> students);
+
     String prompt(String msg);
-    public void sendMessage (String message);
+
+    void sendMessage(String message);
 }
