@@ -8,16 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
 public class ModelClassHash implements iGetModel {
 
 
     private final HashMap<Long, Student> studentHashMap = new HashMap<>();
 
     public ModelClassHash(List<Student> students) {
-       for (Student s:students){
-           studentHashMap.put((long)s.getId(),s);
-       }
+        for (Student s : students) {
+            studentHashMap.put((long) s.getId(), s);
+        }
     }
 
     @Override
@@ -36,8 +35,4 @@ public class ModelClassHash implements iGetModel {
         }
     }
 
-    @Override
-    public Integer key() {
-        return 2;
-    }
 }

@@ -9,12 +9,12 @@ import Model.Core.Student;
 
 public class ControllerClass {
 
-    private final ControllerModel controllerModel;
+    private final List<iGetModel> modelList;
     private iGetModel model;
     private final iGetView view;
 
-    public ControllerClass(ControllerModel controllerModel, iGetView view) {
-        this.controllerModel = controllerModel;
+    public ControllerClass(List<iGetModel> modelList, iGetView view) {
+        this.modelList = modelList;
         this.view = view;
     }
 
@@ -36,15 +36,12 @@ public class ControllerClass {
         } else {
             System.out.println("Список студентов пуст!");
         }
-
-
         // MVC
         //view.printAllStudent(model.getStudents());
     }
 
-
     public void run() {
-        Command com = Command.NONE;
+        Command com;
         boolean getNewIter = true;
         while (getNewIter) {
             String command = view.prompt("Введите команду:");
@@ -55,8 +52,8 @@ public class ControllerClass {
                     System.out.println("Выход из программы");
                     break;
                 case LIST:
-                    for (int i = 1; i <= 3; i++) {
-                        setModel(controllerModel.numberModel.get(i));
+                    for (iGetModel model : modelList) {
+                        setModel(model);
                         view.printAllStudent(model.getStudents());
                     }
                     break;
@@ -66,8 +63,8 @@ public class ControllerClass {
                         break;
                     int id = Integer.parseInt(idString);
                     boolean isDelete = false;
-                    for (int i = 1; i <= 3; i++) {
-                        setModel(controllerModel.numberModel.get(i));
+                    for (iGetModel model : modelList) {
+                        setModel(model);
                         isDelete = model.delete(id);
                         if (isDelete) {
                             view.sendMessage("Студент удален");

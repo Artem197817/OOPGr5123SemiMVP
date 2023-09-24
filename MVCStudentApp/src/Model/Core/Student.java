@@ -1,6 +1,6 @@
 package Model.Core;
 
-public class Student extends Person  {
+public class Student extends Person {
     private final int id;
     private static int generalId;
 
@@ -9,8 +9,9 @@ public class Student extends Person  {
         this.id = generalId;
         generalId++;
     }
-    public Student(String name, int age, int id){
-        super(name,age);
+
+    public Student(String name, int age, int id) {
+        super(name, age);
         this.id = id;
     }
 

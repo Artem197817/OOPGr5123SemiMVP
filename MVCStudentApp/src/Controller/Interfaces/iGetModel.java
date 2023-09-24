@@ -10,5 +10,4 @@ public interface iGetModel {
 
     boolean delete(int id);
 
-    Integer key();
 }

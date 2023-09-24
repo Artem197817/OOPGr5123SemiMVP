@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Controller.ControllerClass;
-import Controller.ControllerModel;
 import Controller.Interfaces.iGetModel;
 import Controller.Interfaces.iGetView;
 import Model.ModelClassFile;
@@ -34,22 +33,18 @@ public class App {
 
         ModelClassFile fModel = new ModelClassFile("StudentDB.csv");
         fModel.saveAllStudentToFile(students);
-
         ModelClassHash modelClassHash = new ModelClassHash(students1);
         ModelClassList modelClassList = new ModelClassList(students2);
-        //ViewClass view = new ViewClass();
 
-        List <iGetModel> modelList = new ArrayList<>();
+        List<iGetModel> modelList = new ArrayList<>();
         modelList.add(fModel);
         modelList.add(modelClassHash);
         modelList.add(modelClassList);
-        ControllerModel controllerModel = new ControllerModel(modelList);
         iGetView view = new ViewClass();
 
-       ControllerClass controller = new ControllerClass(controllerModel,view);
+        ControllerClass controller = new ControllerClass(modelList, view);
 
-       // controller.update();
-       controller.run();
+        controller.run();
 
 
     }

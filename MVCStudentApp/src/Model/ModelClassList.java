@@ -31,8 +31,4 @@ public class ModelClassList implements iGetModel {
         return true;
     }
 
-    @Override
-    public Integer key() {
-        return 3;
-    }
 }
